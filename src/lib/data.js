@@ -137,6 +137,12 @@ const PORTFOLIO = {
       glyph: "EC",
       tag: "Full Stack",
       year: "2024",
+      image: "/projects/ecommerce-next/hero.jpg",
+      screens: [
+        "/projects/ecommerce-next/screen-1.jpg",
+        "/projects/ecommerce-next/screen-2.jpg",
+        "/projects/ecommerce-next/screen-3.jpg",
+      ],
       summary:
         "A full-stack e-commerce build with Clerk auth, Strapi headless CMS, and Stripe checkout. Persistent carts, dark mode, real Gmail sign-in.",
       featured: false,
@@ -156,6 +162,40 @@ const PORTFOLIO = {
       ],
       arch: "Next.js App Router on the front end. Strapi as the headless CMS. Clerk for authentication, Stripe for payments.",
       repo: "https://github.com/Andrew-Magdy-Rizk/nextJs-Project",
+    },
+    {
+      slug: "crafts",
+      title: "Crafts",
+      glyph: "Cr",
+      tag: "Full Stack",
+      year: "2025",
+      image: "/projects/crafts/hero.jpg",
+      screens: [
+        "/projects/crafts/screen-1.jpg",
+        "/projects/crafts/screen-2.jpg",
+        "/projects/crafts/screen-3.jpg",
+      ],
+      summary:
+        "Full-stack platform for an Egyptian crafts shop — customer storefront with dark mode, product search, and a complete admin dashboard for product and category management.",
+      featured: false,
+      size: "wide",
+      stack: ["Next.js", "Node.js", "Tailwind CSS", "MongoDB"],
+      problem:
+        "A local crafts business selling laser-cut gifts, lanterns, and educational products needed a professional online presence with a way to manage their inventory — replacing manual processes with a real web platform.",
+      solution:
+        "A full-stack web application with a polished Arabic-first storefront and a private admin dashboard. Customers browse products by category, view details with image galleries and color options, and create accounts. The shop owner manages products, categories, pricing, and stock status from the dashboard.",
+      features: [
+        "Customer storefront with product listing, search, and pagination",
+        "Product detail pages with image gallery, color picker, rating, and discount pricing",
+        "Dark / light mode toggle across the entire site",
+        "Secure login and signup with email authentication",
+        "Admin dashboard with full product CRUD and image upload",
+        "Category management with cover images",
+        "In-stock toggle and discount pricing per product",
+        "Fully responsive — desktop and mobile",
+      ],
+      arch: "Next.js App Router on the front end with Tailwind CSS for styling. Node.js REST API on the backend, MongoDB for data. JWT-based authentication for both customers and admin.",
+      repo: null,
     },
     {
       slug: "ecommerce-react",

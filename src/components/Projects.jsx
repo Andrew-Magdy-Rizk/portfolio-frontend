@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import PORTFOLIO from "@/lib/data";
 
 const cardVariants = {
@@ -28,7 +29,17 @@ function ProjectCard({ p, index, onOpen }) {
       <div className="visual">
         <span className="badge pill">{p.tag}</span>
         {p.featured && <span className="featured-tag">Featured</span>}
-        <span className="glyph">{p.glyph}</span>
+        {p.image ? (
+          <Image
+            src={p.image}
+            alt={p.title}
+            fill
+            sizes="(max-width: 480px) 100vw, (max-width: 980px) 50vw, 33vw"
+            className="object-cover object-top"
+          />
+        ) : (
+          <span className="glyph">{p.glyph}</span>
+        )}
       </div>
       <div className="body">
         <h3>{p.title}</h3>
@@ -105,8 +116,21 @@ function ProjectDetail({ p, onClose }) {
       </header>
 
       <div className="detail-shot max-w-[calc(1480px-var(--pad-x)*2)] -mt-10 mx-auto mb-0">
-        <span className="ph-note">▦ HERO IMAGE · drop screenshot here</span>
-        <span className="glyph">{p.glyph}</span>
+        {p.image ? (
+          <Image
+            src={p.image}
+            alt={`${p.title} — hero screenshot`}
+            fill
+            sizes="100vw"
+            className="object-cover object-top"
+            priority
+          />
+        ) : (
+          <>
+            <span className="ph-note">▦ HERO IMAGE · drop screenshot here</span>
+            <span className="glyph">{p.glyph}</span>
+          </>
+        )}
       </div>
 
       <div className="detail-body">
@@ -173,9 +197,24 @@ function ProjectDetail({ p, onClose }) {
               <span className="roman">iv.</span> Selected screens
             </h2>
             <div className="detail-gallery">
-              <div className="g"><span>SCREEN · 01</span></div>
-              <div className="g"><span>SCREEN · 02</span></div>
-              <div className="g"><span>SCREEN · 03</span></div>
+              {(p.screens && p.screens.length > 0
+                ? p.screens
+                : [null, null, null]
+              ).map((src, i) => (
+                <div key={i} className="g">
+                  {src ? (
+                    <Image
+                      src={src}
+                      alt={`${p.title} — screen ${i + 1}`}
+                      fill
+                      sizes="(max-width: 980px) 100vw, 50vw"
+                      className="object-cover object-top"
+                    />
+                  ) : (
+                    <span>SCREEN · {String(i + 1).padStart(2, "0")}</span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
