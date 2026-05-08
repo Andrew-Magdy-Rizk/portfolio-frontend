@@ -1,0 +1,263 @@
+const PORTFOLIO = {
+  identity: {
+    name: "Andrew Dakran",
+    fullName: "Andrew Magdy Rizk Dakran",
+    initials: "AD",
+    role: "Full Stack Developer · MERN",
+    location: "Cairo · Egypt",
+    available: true,
+    tagline: {
+      pre: "I build",
+      em: "business-focused",
+      post: "full-stack systems.",
+    },
+    lede: "Full-Stack Developer with two years of hands-on experience designing and shipping scalable web applications. Currently building at The Community (TC) in Cairo — corporate sites, internal tools, and the systems that hold them up.",
+    stats: [
+      { num: "2+", lbl: "Years Building" },
+      { num: "6", lbl: "Roles Held" },
+      { num: "15+", lbl: "Technologies" },
+      { num: "A+", lbl: "BSc · GPA 3.85" },
+    ],
+  },
+
+  socials: {
+    github: "https://github.com/Andrew-Magdy-Rizk",
+    githubLabel: "github.com/Andrew-Magdy-Rizk",
+    linkedin: "https://www.linkedin.com/in/andrew-dakran-22900a224",
+    linkedinLabel: "linkedin.com/in/andrew-dakran",
+    email: "andrewdakran72@gmail.com",
+    emailLabel: "andrewdakran72@gmail.com",
+    phone: "+20 127 598 0639",
+    phoneLabel: "+20 127 598 0639",
+  },
+
+  skills: [
+    {
+      num: "i.",
+      title: "Frontend",
+      blurb:
+        "Production Next.js & React with the modern toolchain. Tailwind, Shadcn/UI, Redux, SASS — built mobile-first and pushed for performance.",
+      pills: ["Next.js 15", "React.js", "Redux", "JavaScript / ES6", "Tailwind CSS", "Shadcn/UI", "SASS", "Bootstrap"],
+      size: "lg",
+      featured: true,
+    },
+    {
+      num: "ii.",
+      title: "Backend",
+      blurb:
+        "REST APIs with Node and Express. Token-based auth (Access + Refresh JWTs), role gating, and clean data layers.",
+      pills: ["Node.js", "Express.js", "REST APIs", "JWT Auth"],
+      size: "md",
+    },
+    {
+      num: "iii.",
+      title: "Databases",
+      blurb: "Schemas modelled around real workflows — relational where it earns its keep, document where it flows.",
+      pills: ["MongoDB", "PostgreSQL", "MySQL"],
+      size: "sm",
+    },
+    {
+      num: "iv.",
+      title: ".NET & Microsoft",
+      blurb: "Graduation-project depth: ASP.NET + C# + SQL Server, plus day-to-day Azure DevOps for project ops.",
+      pills: ["ASP.NET", "C#", "SQL Server", "Azure DevOps"],
+      size: "md",
+    },
+    {
+      num: "v.",
+      title: "CMS & Commerce",
+      blurb:
+        "Pragmatic stacks for client builds — WordPress when they own it, Strapi headless for new builds, Stripe & Clerk for payments and auth.",
+      pills: ["WordPress", "Shopify", "Strapi", "Stripe", "Clerk"],
+      size: "md",
+    },
+    {
+      num: "vi.",
+      title: "Tools & Ops",
+      blurb: "Git/GitHub for everything. Linux & AWS for hosting. Photoshop for the UI bits that need it.",
+      pills: ["Git", "GitHub", "Linux", "AWS", "Photoshop"],
+      size: "sm",
+    },
+  ],
+
+  projects: [
+    {
+      slug: "filter-candles",
+      title: "Filter Candles",
+      glyph: "Fc",
+      tag: "Full Stack",
+      year: "2025",
+      summary:
+        "A complete management system for water-filter products — full-stack web app with secure auth, search, and a responsive product UI.",
+      featured: true,
+      size: "hero",
+      stack: ["Next.js 15", "Node.js", "Express", "MongoDB", "JWT", "Tailwind", "Shadcn/UI"],
+      problem:
+        "A water-filter business needed a single place to manage their candle/filter products and present them to customers — replacing a patchwork of spreadsheets and a static site that hadn't been updated in months.",
+      solution:
+        "A full-stack web application for managing and displaying candle products, with secure session handling via Access + Refresh tokens, search and filtering for customers, and a responsive UI that works on every device.",
+      features: [
+        "Full-stack product management built on Next.js, Node, Express, MongoDB & Mongoose",
+        "Secure authentication with Access & Refresh tokens for session management",
+        "Search and filtering so users find products quickly",
+        "Responsive, accessible UI with Tailwind CSS and Shadcn/UI",
+        "SweetAlert2 for confirmations and feedback flows",
+      ],
+      arch: "Next.js 15 App Router on the front end. Node + Express API behind it, talking to MongoDB through Mongoose. JWT auth with refresh-token rotation in httpOnly cookies. Currently in production.",
+      repo: null,
+    },
+    {
+      slug: "advanced-academy",
+      title: "Advanced Academy",
+      glyph: "AA",
+      tag: ".NET",
+      year: "2024",
+      summary:
+        "Graduation project — full institute-management system for students, employees, courses, and grades. 2nd place in the Republic of Egypt.",
+      featured: false,
+      size: "tall",
+      stack: ["ASP.NET", "C#", "SQL Server", "SweetAlert2"],
+      problem:
+        "Institutes were running registrations, grades, and credit-hour scheduling on paper and disconnected spreadsheets — slow for staff, opaque for students.",
+      solution:
+        "A web application that lets employees manage students, courses, and grades while letting students self-register subjects according to the credit-hour system, all under proper authentication and authorisation.",
+      features: [
+        "Full CRUD across students, employees, courses & institute tables",
+        "Credit-hour subject registration online for students",
+        "Grade entry by employees, grade view by students",
+        "Authentication & authorisation with email-based password recovery",
+        "Earned 2nd place in the Republic of Egypt graduation-project competition",
+      ],
+      arch: "ASP.NET Web Forms / MVC with C#. SQL Server backing all relational data. Email integration for password recovery. Built as the capstone for my BSc in Information Systems at Advanced Academy.",
+      repo: null,
+    },
+    {
+      slug: "ecommerce-next",
+      title: "E-commerce · Next.js",
+      glyph: "EC",
+      tag: "Full Stack",
+      year: "2024",
+      summary:
+        "A full-stack e-commerce build with Clerk auth, Strapi headless CMS, and Stripe checkout. Persistent carts, dark mode, real Gmail sign-in.",
+      featured: false,
+      size: "wide",
+      stack: ["Next.js", "Clerk", "Strapi", "Stripe", "SweetAlert2"],
+      problem:
+        "I wanted a reference build of a modern e-commerce stack — one that matched the patterns I'd actually deploy for a client, not a tutorial that cuts corners on auth and payments.",
+      solution:
+        "A Next.js storefront wired to Strapi for catalog admin, Clerk for real Gmail sign-in, and Stripe for payments. Cart persists across sign-out so customers don't lose their session.",
+      features: [
+        "Product details fetched via API from Strapi",
+        "Real Gmail sign-in / sign-up via Clerk",
+        "Cart persists across sign-out and returns on sign-in",
+        "Single-product purchase from the detail page or full cart checkout",
+        "Admin-added products appear in the storefront immediately",
+        "Built-in dark mode",
+      ],
+      arch: "Next.js App Router on the front end. Strapi as the headless CMS. Clerk for authentication, Stripe for payments.",
+      repo: "https://github.com/Andrew-Magdy-Rizk/nextJs-Project",
+    },
+    {
+      slug: "ecommerce-react",
+      title: "E-commerce Shop · React",
+      glyph: "Es",
+      tag: "Frontend",
+      year: "2023",
+      summary:
+        "Front-end e-commerce build using the Fake Store API — clean React state management for cart, add, remove, and clear flows.",
+      featured: false,
+      size: "med",
+      stack: ["React.js", "Fake Store API", "CSS"],
+      problem: "An early front-end build to drill state management and API consumption end-to-end.",
+      solution:
+        "A React shop pulling product data from the Fake Store API, with a working cart that handles add, remove, and clear-all.",
+      features: [
+        "Product details fetched from a public API",
+        "Add to cart from any product",
+        "Remove a single item from the cart",
+        "Clear the entire cart in one action",
+      ],
+      arch: "React.js with hand-rolled state management and CSS.",
+      repo: "https://github.com/Andrew-Magdy-Rizk/react-shop-app",
+    },
+  ],
+
+  experience: [
+    {
+      when: "Mar 2025 — Now",
+      title: "Full Stack Developer",
+      org: "The Community (TC) · Cairo · Full-time",
+      summary:
+        "Managing multiple corporate websites and shipping small applications that improve organisational processes across the company.",
+      stack: ["Next.js", "Node.js", "JavaScript", "Tailwind"],
+    },
+    {
+      when: "Nov 2024 — Mar 2025",
+      title: "Frontend Developer",
+      org: "The Community (TC) · Online · Part-time",
+      summary:
+        "Built a courses website with Next.js 14. Used Azure DevOps to manage the entire project lifecycle — boards, repos, pipelines.",
+      stack: ["Next.js 14", "React", "Azure DevOps"],
+    },
+    {
+      when: "Sep 2024 — Jul 2025",
+      title: "Teaching Assistant",
+      org: "Advanced Academy · Giza · Full-time",
+      summary:
+        "Trained students on graduation projects across all academic branches. Took the practical sessions in every track.",
+      stack: ["Mentoring", "Curriculum", "Code Review"],
+    },
+    {
+      when: "Oct 2024 — Mar 2025",
+      title: "Technical Support",
+      org: "RGB · Fayoum · Full-time",
+      summary:
+        "Supported desktop and web cashier software in retail environments. Handled connectivity, printer integration, and online/offline failover.",
+      stack: ["POS", "Networking", "Printers"],
+    },
+    {
+      when: "Jun 2024 — Feb 2025",
+      title: "Instructor",
+      org: "The Community (TC) · Cairo · Part-time",
+      summary:
+        "Trained teenagers on Python and Scratch. Ran specialised workshops introducing adults to web technologies.",
+      stack: ["Python", "Scratch", "Workshops"],
+    },
+    {
+      when: "Jun 2024 — Aug 2024",
+      title: "Instructor",
+      org: "Eagles Academy · Fayoum · Part-time",
+      summary:
+        "Taught teenagers programming fundamentals (focus on Python) and guided adults through web application basics. Designed hands-on sessions with practical applications.",
+      stack: ["Python", "Web Basics"],
+    },
+  ],
+
+  education: [
+    {
+      when: "Sep 2020 — Jul 2024",
+      title: "B.Sc. Information Systems",
+      org: "Advanced Academy · Grade A+ · GPA 3.85",
+      summary:
+        "Graduation project: Advanced Academy Web Application — a full institute-management system that took 2nd place in the Republic of Egypt.",
+    },
+  ],
+
+  certifications: [
+    "Information Technology Institute (ITI) — PHP Web Development Track · 90 hours · 2024",
+    "Cisco Networking Academy — IT Essentials · 2022",
+    "Masr 2030 — ICDL · 2023",
+    "Masr 2030 — English · 2023",
+    "Agricultural Bank — Essentials · 2022",
+    "TawarWeGhayar — Digital Skills · 2022",
+  ],
+
+  languages: [
+    { lang: "Arabic", level: "Native" },
+    { lang: "English", level: "B1" },
+  ],
+
+  personal: ["Adaptability", "Communication", "Team Collaboration", "Problem-Solving", "Work Under Pressure"],
+};
+
+export default PORTFOLIO;
