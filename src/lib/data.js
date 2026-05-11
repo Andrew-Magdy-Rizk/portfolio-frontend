@@ -87,6 +87,12 @@ const PORTFOLIO = {
       glyph: "Fc",
       tag: "Full Stack",
       year: "2025",
+      image: "/projects/filter-candles/hero.jpg",
+      screens: [
+        "/projects/filter-candles/screen-1.jpg",
+        "/projects/filter-candles/screen-2.jpg",
+        "/projects/filter-candles/screen-3.jpg",
+      ],
       summary:
         "A complete management system for water-filter products — full-stack web app with secure auth, search, and a responsive product UI.",
       featured: true,
@@ -112,6 +118,12 @@ const PORTFOLIO = {
       glyph: "AA",
       tag: ".NET",
       year: "2024",
+      image: "/projects/advanced-academy/hero.png",
+      screens: [
+        "/projects/advanced-academy/screen-1.jpg",
+        "/projects/advanced-academy/screen-2.jpg",
+        "/projects/advanced-academy/screen-3.jpg",
+      ],
       summary:
         "Graduation project — full institute-management system for students, employees, courses, and grades. 2nd place in the Republic of Egypt.",
       featured: false,
