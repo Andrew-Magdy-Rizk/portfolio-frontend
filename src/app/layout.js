@@ -1,86 +1,63 @@
-import {
-  Instrument_Serif,
-  JetBrains_Mono,
-  Cormorant_Garamond,
-  IBM_Plex_Sans,
-  Bricolage_Grotesque,
-} from "next/font/google";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Hanken_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  style: ["normal", "italic"],
+// Neon Logic type: Hanken Grotesk headlines, Inter body, JetBrains Mono labels.
+const hankenGrotesk = Hanken_Grotesk({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-instrument-serif",
+  variable: "--font-hanken-grotesk",
   display: "swap",
 });
 
-const geistSans = Geist({
+const inter = Inter({
+  weight: ["400", "500"],
   subsets: ["latin"],
-  variable: "--font-geist-sans",
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-inter",
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  weight: ["400", "500"],
+  weight: ["400"],
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-  weight: ["400", "600"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  variable: "--font-cormorant-garamond",
-  display: "swap",
-});
-
-const ibmPlexSans = IBM_Plex_Sans({
-  weight: ["300", "400", "500", "600"],
-  subsets: ["latin"],
-  variable: "--font-ibm-plex-sans",
-  display: "swap",
-});
-
-const bricolageGrotesque = Bricolage_Grotesque({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-  variable: "--font-bricolage-grotesque",
-  display: "swap",
-});
-
 export const metadata = {
-  title: "Andrew Dakran · Full Stack Software Engineer",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+  title: {
+    default: "Andrew Dakran | Full Stack Software Engineer",
+    template: "%s | Andrew Dakran",
+  },
   description:
-    "Andrew Dakran — full stack software engineer building scalable, business-focused web applications and systems.",
+    "Andrew Dakran is a full stack software engineer building scalable, business-focused web applications and systems.",
   openGraph: {
-    title: "Andrew Dakran · Full Stack Software Engineer",
+    title: "Andrew Dakran | Full Stack Software Engineer",
     description:
-      "Full-Stack Developer with two years of hands-on experience designing and shipping scalable web applications.",
+      "Full-stack developer with hands-on experience designing and shipping scalable web applications.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Andrew Dakran · Full Stack Software Engineer",
-    description: "Full-Stack Developer building scalable web applications.",
+    title: "Andrew Dakran | Full Stack Software Engineer",
+    description: "Full-stack developer building scalable web applications.",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#1a1a1a",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      data-theme="dark"
-      className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable} ${ibmPlexSans.variable} ${bricolageGrotesque.variable}`}
+      className={`${hankenGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>{children}</body>
     </html>

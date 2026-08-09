@@ -1,28 +1,24 @@
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Resume from "@/components/Resume";
-import Footer from "@/components/Footer";
-import Tweaks from "@/components/Tweaks";
+import PanelShell from "@/app/_components/PanelShell";
+import HomePanel from "@/app/_components/panels/HomePanel";
+import AboutPanel from "@/app/_components/panels/AboutPanel";
+import SkillsPanel from "@/app/_components/panels/SkillsPanel";
+import WorkPanel from "@/app/_components/panels/WorkPanel";
+import ContactPanel from "@/app/_components/panels/ContactPanel";
 
+/**
+ * The panels are rendered here on the server and handed to the client shell as
+ * nodes, so all five are present in the initial HTML.
+ */
 export default function Home() {
   return (
-    <>
-      <div className="aurora" aria-hidden="true" />
-      <div className="grain" aria-hidden="true" />
-
-      <Nav />
-
-      <main>
-        <Hero />
-        <Skills />
-        <Projects />
-        <Resume />
-      </main>
-
-      <Footer />
-      <Tweaks />
-    </>
+    <PanelShell
+      panels={[
+        { key: "home", label: "Home", node: <HomePanel /> },
+        { key: "about", label: "About", node: <AboutPanel /> },
+        { key: "skills", label: "Skills", node: <SkillsPanel /> },
+        { key: "work", label: "Work", node: <WorkPanel /> },
+        { key: "contact", label: "Contact", node: <ContactPanel /> },
+      ]}
+    />
   );
 }

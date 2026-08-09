@@ -1,158 +1,162 @@
-import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-import PORTFOLIO from "@/lib/data";
+import { notFound } from "next/navigation";
+import { ArrowUpRight } from "lucide-react";
+import PORTFOLIO from "@/app/_data/portfolio";
+import PageChrome from "@/app/_components/PageChrome";
+import Reveal from "@/app/_components/Reveal";
+import StackBadge from "@/app/_components/StackBadge";
+import { Button } from "@/components/ui/button";
 
 export function generateStaticParams() {
-  return PORTFOLIO.projects.map((p) => ({ slug: p.slug }));
+  return PORTFOLIO.projects.map((project) => ({ slug: project.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const project = PORTFOLIO.projects.find((p) => p.slug === params.slug);
-  if (!project) return {};
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const project = PORTFOLIO.projects.find((item) => item.slug === slug);
+  if (!project) return { title: "Project not found" };
+
   return {
-    title: `${project.title} · Andrew Dakran`,
+    title: project.title,
     description: project.summary,
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      images: project.image ? [{ url: project.image }] : undefined,
+    },
   };
 }
 
-export default function ProjectPage({ params }) {
-  const p = PORTFOLIO.projects.find((proj) => proj.slug === params.slug);
-  if (!p) notFound();
-
-  const idx = PORTFOLIO.projects.findIndex((x) => x.slug === p.slug);
+export default async function ProjectPage({ params }) {
+  const { slug } = await params;
+  const project = PORTFOLIO.projects.find((item) => item.slug === slug);
+  if (!project) notFound();
 
   return (
-    <>
-      <div className="aurora" aria-hidden="true" />
-      <div className="grain" aria-hidden="true" />
+    <PageChrome>
+      <p className="crumb">
+        <Link href="/projects">projects</Link> / {project.slug}
+      </p>
+      <h1 className="page-title max-w-[18ch]">{project.title}</h1>
+      <p className="lede mt-6 max-w-[62ch]">{project.summary}</p>
 
-      <div className="detail-page">
-        {/* sticky back bar */}
-        <div className="detail-back">
-          <Link href="/#work" className="back-btn">
-            ← Back to work
-          </Link>
-          <span className="mono">
-            PROJECT · {String(idx + 1).padStart(2, "0")} · {p.tag.toUpperCase()}
-          </span>
+      <dl className="mt-8 flex flex-wrap gap-x-12 gap-y-5 border-t border-line pt-6">
+        {[
+          { label: "Year", value: project.year },
+          { label: "Type", value: project.tag },
+          { label: "Status", value: project.featured ? "Featured" : "Shipped" },
+        ].map((item) => (
+          <div key={item.label}>
+            <dt className="metric-lbl">{item.label}</dt>
+            <dd className="metric-val">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {(project.live || project.repo) && (
+        <div className="proj-links">
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1"
+            >
+              Live preview
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          )}
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1"
+            >
+              GitHub
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          )}
         </div>
+      )}
 
-        {/* hero header */}
-        <header className="detail-hero max-w-370 mx-auto">
-          <div className="crumb">/ projects / {p.slug}</div>
-          <h1>
-            {p.title}
-            {p.title.length < 14 && <em>.</em>}
-          </h1>
-          <p className="text-[19px] max-w-[60ch] text-(--ink-soft) m-0">
-            {p.summary}
-          </p>
-          <div className="meta">
-            <div className="item">
-              <div className="lbl">Year</div>
-              <div className="val">{p.year}</div>
-            </div>
-            <div className="item">
-              <div className="lbl">Type</div>
-              <div className="val">{p.tag}</div>
-            </div>
-            <div className="item">
-              <div className="lbl">Status</div>
-              <div className="val">Shipped</div>
+      {project.image && (
+        <Reveal className="proj-shot mt-10 aspect-[16/10]">
+          <Image
+            src={project.image}
+            alt={`${project.title} — main screen`}
+            fill
+            priority
+            sizes="(max-width: 1180px) 100vw, 1132px"
+            className="object-cover object-top"
+          />
+        </Reveal>
+      )}
+
+      <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr] lg:gap-16">
+        <aside className="grid content-start gap-8 lg:sticky lg:top-24 lg:self-start">
+          <div>
+            <p className="label">Stack</p>
+            <div className="mt-3 flex flex-wrap gap-[7px]">
+              {project.stack.map((item) => (
+                <StackBadge key={item}>{item}</StackBadge>
+              ))}
             </div>
           </div>
-        </header>
 
-        {/* hero shot placeholder */}
-        <div className="detail-shot max-w-[calc(1480px-var(--pad-x)*2)] -mt-10 mx-auto mb-0">
-          <span className="ph-note">▦ HERO IMAGE · drop screenshot here</span>
-          <span className="glyph">{p.glyph}</span>
-        </div>
-
-        {/* body */}
-        <div className="detail-body">
-          {/* aside */}
-          <aside>
-            <div className="block">
-              <div className="lbl">Stack</div>
-              <div className="stack-list">
-                {p.stack.map((s, i) => (
-                  <span key={i} className="pill">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="block">
-              <div className="lbl">Architecture</div>
-              <div className="val">{p.arch}</div>
-            </div>
-            <div className="block">
-              <div className="lbl">Links</div>
-              <div className="links">
-                {p.repo && (
-                  <a
-                    className="btn btn-primary"
-                    href={p.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View on GitHub ↗
-                  </a>
-                )}
-                <Link className="btn" href="/#work">
-                  ← All projects
-                </Link>
-              </div>
-            </div>
-          </aside>
-
-          {/* main content */}
-          <div className="main">
-            <div className="chunk">
-              <h2>
-                <span className="roman">i.</span> The problem
-              </h2>
-              <p>{p.problem}</p>
-            </div>
-
-            <div className="chunk">
-              <h2>
-                <span className="roman">ii.</span> The solution
-              </h2>
-              <p>{p.solution}</p>
-            </div>
-
-            <div className="chunk">
-              <h2>
-                <span className="roman">iii.</span> Key features
-              </h2>
-              <ul>
-                {p.features.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="chunk">
-              <h2>
-                <span className="roman">iv.</span> Selected screens
-              </h2>
-              <div className="detail-gallery">
-                <div className="g">
-                  <span>SCREEN · 01</span>
-                </div>
-                <div className="g">
-                  <span>SCREEN · 02</span>
-                </div>
-                <div className="g">
-                  <span>SCREEN · 03</span>
-                </div>
-              </div>
-            </div>
+          <div>
+            <p className="label">Architecture</p>
+            <p className="mt-3 text-sm leading-[1.7] text-ink-body">{project.arch}</p>
           </div>
+        </aside>
+
+        <div className="prose grid gap-10">
+          <Reveal as="section">
+            <h2>The problem</h2>
+            <p>{project.problem}</p>
+          </Reveal>
+
+          <Reveal as="section">
+            <h2>The solution</h2>
+            <p>{project.solution}</p>
+          </Reveal>
+
+          <Reveal as="section">
+            <h2>Key features</h2>
+            <ul>
+              {project.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+          </Reveal>
+
+          {project.screens?.length > 0 && (
+            <Reveal as="section">
+              <h2>Selected screens</h2>
+              <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {project.screens.map((screen, index) => (
+                  <div key={screen} className="proj-shot aspect-[3/4]">
+                    <Image
+                      src={screen}
+                      alt={`${project.title} — screen ${index + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          )}
         </div>
       </div>
-    </>
+
+      <div className="mt-16 border-t border-line pt-8">
+        <Button asChild variant="outline" size="lg" className="h-12 px-6 text-[15px]">
+          <Link href="/projects">← All projects</Link>
+        </Button>
+      </div>
+    </PageChrome>
   );
 }

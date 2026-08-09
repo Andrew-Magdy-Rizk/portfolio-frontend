@@ -1,3 +1,21 @@
+/* =========================================================
+   Portfolio content.
+   ---------------------------------------------------------
+   UNFILLED CONTENT — anything below whose value is `null` or a
+   string starting with "TODO:" has no source in the CV and is
+   rendered on screen as a visible dashed placeholder. Grep for
+   "TODO:" to find every one. Outstanding:
+
+     • about.story              — long-form personal narrative
+     • about.strengths[].note   — one line per strength
+     • skills[].level           — "expert" | "advanced" | "proficient"
+     • skills[].bars            — 3 × { label, pct } per category
+     • testimonials             — quotes from colleagues / clients
+     • projects[].live          — public URL, where one exists
+
+   Fill a field and the placeholder disappears automatically.
+   ========================================================= */
+
 const PORTFOLIO = {
   identity: {
     name: "Andrew Dakran",
@@ -6,19 +24,41 @@ const PORTFOLIO = {
     role: "Full Stack Developer · MERN",
     location: "Cairo · Egypt",
     available: true,
+    availabilityLabel: "Open to full-stack roles",
     tagline: {
       pre: "I build",
       em: "business-focused",
       post: "full-stack systems.",
     },
+    // Headline for the panel hero — the tagline read as one sentence.
+    headline: "Full-stack engineer building business-focused systems that hold up.",
     lede: "Full-Stack Developer with two years of hands-on experience designing and shipping scalable web applications. Currently building at The Community (TC) in Cairo — corporate sites, internal tools, and the systems that hold them up.",
+    // `count` drives the count-up animation; `null` renders `num` statically.
     stats: [
-      { num: "2+", lbl: "Years Building" },
-      { num: "6", lbl: "Roles Held" },
-      { num: "15+", lbl: "Technologies" },
-      { num: "A+", lbl: "BSc · GPA 3.85" },
+      { num: "2+", count: 2, suffix: "+", lbl: "Years Building" },
+      { num: "6", count: 6, suffix: "", lbl: "Roles Held" },
+      { num: "15+", count: 15, suffix: "+", lbl: "Technologies" },
+      { num: "A+", count: null, suffix: "", lbl: "BSc · GPA 3.85" },
+    ],
+    // Floating chips over the portrait.
+    heroChips: ["Next.js", "Node.js", "MongoDB"],
+  },
+
+  about: {
+    story: "TODO: write the personal narrative — how you got into building, what you care about, how you work.",
+    // Titles are real (they were `personal` in the CV); the one-line notes are not.
+    strengths: [
+      { title: "Adaptability", note: "TODO: one line on how this shows up in your work." },
+      { title: "Communication", note: "TODO: one line on how this shows up in your work." },
+      { title: "Team Collaboration", note: "TODO: one line on how this shows up in your work." },
+      { title: "Problem-Solving", note: "TODO: one line on how this shows up in your work." },
+      { title: "Work Under Pressure", note: "TODO: one line on how this shows up in your work." },
     ],
   },
+
+  // No source for these — the contact panel shows dashed placeholders until filled.
+  // Shape: { quote, name, role, initials }
+  testimonials: [],
 
   socials: {
     github: "https://github.com/Andrew-Magdy-Rizk",
@@ -31,10 +71,16 @@ const PORTFOLIO = {
     phoneLabel: "+20 127 598 0639",
   },
 
+  /* `level` and `bars` have no source in the CV.
+     While they are null the skills panel labels the bars from `pills`
+     and renders them in a visibly unfilled state.
+     Fill as: level: "expert", bars: [{ label: "Next.js", pct: 90 }, …] */
   skills: [
     {
       num: "i.",
       title: "Frontend",
+      level: null,
+      bars: null,
       blurb:
         "Production Next.js & React with the modern toolchain. Tailwind, Shadcn/UI, Redux, SASS — built mobile-first and pushed for performance.",
       pills: ["Next.js 15", "React.js", "Redux", "JavaScript / ES6", "Tailwind CSS", "Shadcn/UI", "SASS", "Bootstrap"],
@@ -44,6 +90,8 @@ const PORTFOLIO = {
     {
       num: "ii.",
       title: "Backend",
+      level: null,
+      bars: null,
       blurb:
         "REST APIs with Node and Express. Token-based auth (Access + Refresh JWTs), role gating, and clean data layers.",
       pills: ["Node.js", "Express.js", "REST APIs", "JWT Auth"],
@@ -52,6 +100,8 @@ const PORTFOLIO = {
     {
       num: "iii.",
       title: "Databases",
+      level: null,
+      bars: null,
       blurb: "Schemas modelled around real workflows — relational where it earns its keep, document where it flows.",
       pills: ["MongoDB", "PostgreSQL", "MySQL"],
       size: "sm",
@@ -59,6 +109,8 @@ const PORTFOLIO = {
     {
       num: "iv.",
       title: ".NET & Microsoft",
+      level: null,
+      bars: null,
       blurb: "Graduation-project depth: ASP.NET + C# + SQL Server, plus day-to-day Azure DevOps for project ops.",
       pills: ["ASP.NET", "C#", "SQL Server", "Azure DevOps"],
       size: "md",
@@ -66,6 +118,8 @@ const PORTFOLIO = {
     {
       num: "v.",
       title: "CMS & Commerce",
+      level: null,
+      bars: null,
       blurb:
         "Pragmatic stacks for client builds — WordPress when they own it, Strapi headless for new builds, Stripe & Clerk for payments and auth.",
       pills: ["WordPress", "Shopify", "Strapi", "Stripe", "Clerk"],
@@ -74,6 +128,8 @@ const PORTFOLIO = {
     {
       num: "vi.",
       title: "Tools & Ops",
+      level: null,
+      bars: null,
       blurb: "Git/GitHub for everything. Linux & AWS for hosting. Photoshop for the UI bits that need it.",
       pills: ["Git", "GitHub", "Linux", "AWS", "Photoshop"],
       size: "sm",
@@ -111,6 +167,7 @@ const PORTFOLIO = {
       ],
       arch: "Next.js 15 App Router on the front end. Node + Express API behind it, talking to MongoDB through Mongoose. JWT auth with refresh-token rotation in httpOnly cookies. Currently in production.",
       repo: null,
+      live: null, // TODO: public URL, if the site is reachable
     },
     {
       slug: "advanced-academy",
@@ -142,6 +199,7 @@ const PORTFOLIO = {
       ],
       arch: "ASP.NET Web Forms / MVC with C#. SQL Server backing all relational data. Email integration for password recovery. Built as the capstone for my BSc in Information Systems at Advanced Academy.",
       repo: null,
+      live: null, // TODO: public URL, if the site is reachable
     },
     {
       slug: "ecommerce-next",
@@ -174,6 +232,7 @@ const PORTFOLIO = {
       ],
       arch: "Next.js App Router on the front end. Strapi as the headless CMS. Clerk for authentication, Stripe for payments.",
       repo: "https://github.com/Andrew-Magdy-Rizk/nextJs-Project",
+      live: null, // TODO: public URL, if the site is reachable
     },
     {
       slug: "crafts",
@@ -208,6 +267,7 @@ const PORTFOLIO = {
       ],
       arch: "Next.js App Router on the front end with Tailwind CSS for styling. Node.js REST API on the backend, MongoDB for data. JWT-based authentication for both customers and admin.",
       repo: null,
+      live: null, // TODO: public URL, if the site is reachable
     },
     {
       slug: "ecommerce-react",
@@ -231,6 +291,7 @@ const PORTFOLIO = {
       ],
       arch: "React.js with hand-rolled state management and CSS.",
       repo: "https://github.com/Andrew-Magdy-Rizk/react-shop-app",
+      live: null, // TODO: public URL, if the site is reachable
     },
   ],
 
@@ -308,8 +369,6 @@ const PORTFOLIO = {
     { lang: "Arabic", level: "Native" },
     { lang: "English", level: "B1" },
   ],
-
-  personal: ["Adaptability", "Communication", "Team Collaboration", "Problem-Solving", "Work Under Pressure"],
 };
 
 export default PORTFOLIO;
